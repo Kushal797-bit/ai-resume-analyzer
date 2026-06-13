@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* ── Loading overlay ── */
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        #loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 52px;
+            height: 52px;
+            border: 5px solid rgba(255, 255, 255, 0.25);
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: spin 0.85s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .loading-subtext {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+            margin-top: -12px;
+        }
+
+        /* ── Error message box ── */
+        .error-box {
+            background: #fff5f5;
+            border: 1px solid #fed7d7;
+            color: #c53030;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* ── File name display ── */
+        .file-label {
+            display: block;
+            cursor: pointer;
+            border: 2px dashed #CBD5E0;
+            border-radius: 8px;
+            padding: 18px;
+            text-align: center;
+            color: #718096;
+            font-size: 14px;
+            transition: border-color 0.2s, background 0.2s;
+            margin-bottom: 14px;
+        }
+
+        .file-label:hover {
+            border-color: #2C3E50;
+            background: #F7FAFC;
+        }
+
+        .file-label.has-file {
+            border-color: #27AE60;
+            background: #F0FFF4;
+            color: #27AE60;
+            font-weight: 500;
+        }
+
+        /* Hide the default file input */
+        #resume-input {
+            display: none;
+        }
+
+        /* ── Button states ── */
+        button[type="submit"]:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode">🌙</button>
+
+    
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <div class="loading-text">Analyzing your resume...</div>
+        <div class="loading-subtext">This usually takes 5 – 10 seconds</div>
+    </div>
+
+    <div class="container">
+
+        <h1>AI Resume Analyzer</h1>
+        <p class="subtitle">Upload your resume and get ATS insights</p>
+
+        <!-- Error message (shown when Flask passes an error) -->
+        {% if error %}
+        <div class="error-box">
+            <span class="error-icon">⚠️</span>
+            <span>{{ error }}</span>
+        </div>
+        {% endif %}
+
+        <form action="/upload" method="POST" enctype="multipart/form-data" id="upload-form">
+
+            <!-- Custom file picker -->
+            <label for="resume-input" class="file-label" id="file-label">
+                📄 Click to choose your resume PDF
+            </label>
+            <input
+                type="file"
+                name="resume"
+                id="resume-input"
+                accept=".pdf"
+                required>
+
+            <textarea
+                name="job_description"
+                placeholder="Paste Job Description Here..."
+                rows="10"
+                required></textarea>
+
+            <button type="submit" id="submit-btn">
+                Analyze Resume
+            </button>
+
+        </form>
+
+    </div>
+
+    <script>
+        const form       = document.getElementById('upload-form');
+        const submitBtn  = document.getElementById('submit-btn');
+        const overlay    = document.getElementById('loading-overlay');
+        const fileInput  = document.getElementById('resume-input');
+        const fileLabel  = document.getElementById('file-label');
+
+        // Update file label when a file is chosen
+        fileInput.addEventListener('change', function () {
+            if (this.files && this.files[0]) {
+                fileLabel.textContent = '✅  ' + this.files[0].name;
+                fileLabel.classList.add('has-file');
+            } else {
+                fileLabel.textContent = '📄 Click to choose your resume PDF';
+                fileLabel.classList.remove('has-file');
+            }
+        });
+
+        // Show spinner on form submit
+        form.addEventListener('submit', function () {
+            // Show the overlay
+            overlay.classList.add('active');
+
+            // Disable the button so it can't be clicked twice
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Analyzing...';
+        });
+    </script>
+
+    <script>
+    (function () {
+        const toggle = document.getElementById('dark-toggle');
+        const body   = document.body;
+ 
+        // Apply saved preference immediately on page load
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark');
+            toggle.textContent = '☀️';
+        }
+ 
+        toggle.addEventListener('click', function () {
+            const isDark = body.classList.toggle('dark');
+            toggle.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    })();
+</script>
+
+</body>
+
+</html>

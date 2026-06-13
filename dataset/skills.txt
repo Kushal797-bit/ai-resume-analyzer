@@ -1,0 +1,348 @@
+python
+java
+c++
+c
+c#
+javascript
+typescript
+html
+css
+sass
+scss
+less
+react
+angular
+vue
+nextjs
+nuxtjs
+svelte
+nodejs
+expressjs
+flask
+django
+fastapi
+spring boot
+spring
+hibernate
+php
+laravel
+symfony
+ruby
+ruby on rails
+go
+rust
+swift
+kotlin
+scala
+r
+matlab
+perl
+dart
+flutter
+react native
+ionic
+electron
+php
+wordpress
+shopify
+sql
+mysql
+postgresql
+mongodb
+redis
+sqlite
+oracle
+firebase
+cassandra
+dynamodb
+elasticsearch
+neo4j
+mariadb
+supabase
+pinecone
+chromadb
+weaviate
+qdrant
+aws
+azure
+gcp
+google cloud
+heroku
+vercel
+netlify
+digitalocean
+cloudflare
+docker
+kubernetes
+jenkins
+github
+git
+gitlab
+bitbucket
+github actions
+ci/cd
+terraform
+ansible
+puppet
+chef
+vagrant
+nginx
+apache
+prometheus
+grafana
+datadog
+splunk
+elk stack
+logstash
+kibana
+linux
+ubuntu
+centos
+debian
+bash
+shell scripting
+powershell
+machine learning
+deep learning
+artificial intelligence
+nlp
+natural language processing
+computer vision
+data science
+reinforcement learning
+supervised learning
+unsupervised learning
+transfer learning
+generative ai
+large language models
+llm
+transformers
+bert
+gpt
+stable diffusion
+diffusion models
+rag
+retrieval augmented generation
+vector database
+embeddings
+fine tuning
+prompt engineering
+pandas
+numpy
+matplotlib
+seaborn
+plotly
+scikit-learn
+tensorflow
+keras
+pytorch
+xgboost
+lightgbm
+catboost
+opencv
+langchain
+llama index
+hugging face
+openai api
+gemini api
+anthropic api
+spacy
+nltk
+gensim
+fasttext
+word2vec
+mlflow
+wandb
+dvc
+airflow
+apache spark
+hadoop
+kafka
+flink
+databricks
+snowflake
+dbt
+power bi
+tableau
+looker
+metabase
+excel
+google sheets
+rest api
+graphql
+grpc
+websocket
+microservices
+serverless
+event driven architecture
+message queue
+rabbitmq
+celery
+redis queue
+jwt
+oauth
+oauth2
+ssl
+tls
+cryptography
+penetration testing
+ethical hacking
+cybersecurity
+networking
+tcp/ip
+dns
+http
+https
+linux administration
+devops
+devsecops
+site reliability engineering
+sre
+platform engineering
+data structures
+algorithms
+dynamic programming
+system design
+object oriented programming
+oop
+design patterns
+solid principles
+clean code
+test driven development
+tdd
+unit testing
+integration testing
+pytest
+jest
+selenium
+playwright
+postman
+swagger
+openapi
+agile
+scrum
+kanban
+jira
+confluence
+notion
+figma
+adobe xd
+ui/ux design
+wireframing
+prototyping
+data analysis
+data visualization
+data engineering
+data warehousing
+etl
+feature engineering
+model deployment
+model monitoring
+a/b testing
+statistics
+probability
+linear algebra
+calculus
+time series analysis
+forecasting
+recommendation systems
+anomaly detection
+object detection
+image segmentation
+speech recognition
+text classification
+sentiment analysis
+named entity recognition
+question answering
+text summarization
+information retrieval
+knowledge graphs
+blockchain
+web3
+solidity
+smart contracts
+nft
+defi
+cryptocurrency
+arduino
+raspberry pi
+iot
+internet of things
+embedded systems
+robotics
+ros
+unity
+unreal engine
+game development
+opengl
+webgl
+three.js
+d3.js
+chart.js
+tailwind css
+bootstrap
+material ui
+chakra ui
+ant design
+storybook
+webpack
+vite
+babel
+eslint
+prettier
+redux
+zustand
+graphql apollo
+prisma
+typeorm
+sqlalchemy
+celery
+redis
+memcached
+cdn
+load balancing
+auto scaling
+cloud formation
+cloudwatch
+s3
+ec2
+lambda
+rds
+vpc
+iam
+api gateway
+sagemaker
+azure ml
+vertex ai
+google colab
+jupyter notebook
+vscode
+pycharm
+intellij
+postman
+insomnia
+database design
+query optimization
+indexing
+caching
+performance optimization
+code review
+mentoring
+technical writing
+documentation
+project management
+product management
+stakeholder management
+communication
+teamwork
+leadership
+problem solving
+critical thinking
+agile methodology
+research
+data collection
+web scraping
+beautiful soup
+scrapy
+selenium
+puppeteer
