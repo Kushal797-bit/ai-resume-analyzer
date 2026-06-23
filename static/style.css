@@ -964,3 +964,19 @@ body.dark .tip-skill {
 body.dark .tip-text {
     color: #94A3B8 !important;
 }
+.role-card {
+    display: inline-block;
+    background: #34495e;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.role-desc {
+    margin-top: 15px;
+    color: #666;
+    font-size: 14px;
+}

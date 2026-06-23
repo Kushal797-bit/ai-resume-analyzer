@@ -1,3 +1,15 @@
+import joblib
+
+
+clf = joblib.load("ml/models/role_classifier.pkl")
+vectorizer = joblib.load("ml/models/tfidf_vectorizer.pkl")
+
+def predict_role(resume_text):
+    resume_vec = vectorizer.transform([resume_text])
+    prediction = clf.predict(resume_vec)
+    return prediction[0]
+
+from ml.match_score import get_match_score
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
@@ -125,6 +137,8 @@ def upload_resume():
 
     try:
         resume_text = extract_text_from_pdf(filepath)
+        predicted_role = predict_role(resume_text)
+        print("ML Predicted Role:", predicted_role)
 
         if not resume_text.strip():
             return render_template("index.html", error="Could not read text from your PDF. Make sure it is not a scanned image.")
@@ -133,13 +147,18 @@ def upload_resume():
         skills        = extract_skills(resume_text, skills_list)
         jd_skills     = extract_skills(job_description, skills_list)
 
-        matching_skills  = list(set(skills) & set(jd_skills))
-        jd_match_score   = int((len(matching_skills) / len(jd_skills)) * 100) if jd_skills else 0
+        matching_skills = list(set(skills) & set(jd_skills))
+
+        jd_match_score = get_match_score(
+        resume_text,
+        job_description
+         )
+        print("Semantic JD Match Score:", jd_match_score)
         missing_jd_skills = list(set(jd_skills) - set(skills))
 
-        predicted_role = predict_job_role(skills, job_roles)
-        if predicted_role is None:
-            return render_template("index.html", error="Could not detect enough skills in your resume. Please make sure it lists your technical skills clearly.")
+        if predicted_role not in job_roles:
+         predicted_role = "Data Science"
+        
 
         required_skills  = job_roles[predicted_role]
         ats_score        = calculate_ats_score(skills, required_skills)

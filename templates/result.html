@@ -78,11 +78,7 @@
             </div>
         </div>
 
-        <!-- Best Matching Role -->
-        <div class="result-box">
-            <h2>Best Matching Role</h2>
-            <span class="role-badge">{{ predicted_role }}</span>
-        </div>
+        
 
         <!-- Top Career Recommendations -->
         <div class="result-box">
@@ -93,6 +89,11 @@
                 {% endfor %}
             </div>
         </div>
+
+        <div class="result-box">
+          <h2>AI/ML Predicted Role</h2>
+           <p>{{ predicted_role}}</p>
+         </div>
 
         <!-- ATS Score -->
         <div class="result-box">
