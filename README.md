@@ -17,22 +17,22 @@ Most resume checkers stop at a keyword count. This tool goes further — it pars
 ### Analysis Report Overview
 At-a-glance summary: ATS score, JD match %, skills found, resume sections present, and the best-fit role match.
 
-![AI Resume Analysis Report Overview](ai-resume-analyzer-screenshots/report-overview.png)
+![AI Resume Analysis Report Overview](Images/report-overview.png)
 
 ### ATS Score & Skill Gap Radar
 A visual breakdown of resume strength across 6 key domains — Programming, Cloud/DevOps, ML/AI, Data, Backend, and AI Tools.
 
-![ATS Score and Skill Gap Radar](ai-resume-analyzer-screenshots/ats-score-skill-radar.png)
+![ATS Score and Skill Gap Radar](Images/ats-score-skill-radar.png)
 
 ### Job Description Match & Skill Comparison
 Semantic JD match score, with matching and missing skills clearly separated so users know exactly what to add.
 
-![JD Match and Skill Comparison](ai-resume-analyzer-screenshots/jd-match-skills.png)
+![JD Match and Skill Comparison](Images/jd-match-skills.png)
 
 ### Personalized Tips & Resume Section Checklist
 Actionable, per-skill improvement tips plus a recruiter-standard section checklist (Education, Experience, Projects, Skills, Certifications, Achievements, Summary).
 
-![Improvement Tips and Section Checklist](ai-resume-analyzer-screenshots/improvement-tips-checklist.png)
+![Improvement Tips and Section Checklist](Images/improvement-tips-checklist.png)
 
 ---
 
