@@ -24,11 +24,11 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = "resume-analyzer-secret-2024"
 
-# ── Load skills list ──────────────────────────────────────────────────────────
+
 with open("dataset/skills.txt", "r") as file:
     skills_list = [skill.strip() for skill in file.readlines() if skill.strip()]
 
-# ── Job roles config ──────────────────────────────────────────────────────────
+
 job_roles = {
     "Data Scientist": {
         "python": 5, "pandas": 5, "numpy": 5,
@@ -67,7 +67,7 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-# ── PDF helper functions ──────────────────────────────────────────────────────
+
 
 def draw_section_heading(c, y, width, title):
     c.setFillColor(colors.HexColor("#2C3E50"))
@@ -112,7 +112,6 @@ def draw_skill_badges(c, y, width, skill_list, badge_color, text_color):
     return y - 24
 
 
-# ── Routes ────────────────────────────────────────────────────────────────────
 
 @app.route("/")
 def home():
@@ -143,7 +142,7 @@ def upload_resume():
         if not resume_text.strip():
             return render_template("index.html", error="Could not read text from your PDF. Make sure it is not a scanned image.")
 
-        # ── Core analysis ─────────────────────────────────────────────────────
+        
         skills        = extract_skills(resume_text, skills_list)
         jd_skills     = extract_skills(job_description, skills_list)
 
@@ -169,7 +168,7 @@ def upload_resume():
         radar_scores = calculate_radar_scores(skills)
         length_report    = check_resume_length(resume_text)   
 
-        # ── Save to session for PDF download ──────────────────────────────────
+        
         session["skills"]         = skills
         session["predicted_role"] = predicted_role
         session["ats_score"]      = ats_score
