@@ -157,17 +157,17 @@ def upload_resume():
         missing_jd_skills = list(set(jd_skills) - set(skills))
 
 
-    role_mapping = {
-    "Data Science": "Data Scientist",
-    "Machine Learning": "AI/ML Engineer",
-    "Python Developer": "Backend Developer"
-}
+        role_mapping = {
+       "Data Science": "Data Scientist",
+       "Machine Learning": "AI/ML Engineer",
+       "Python Developer": "Backend Developer"
+    }
 
-    predicted_role = role_mapping.get(predicted_role, predicted_role)
+        predicted_role = role_mapping.get(predicted_role, predicted_role)
 
 
-    if predicted_role not in job_roles:
-       predicted_role = "Data Scientist"
+        if predicted_role not in job_roles:
+         predicted_role = "Data Scientist"
 
        
         
@@ -206,10 +206,10 @@ def upload_resume():
         )
 
     
-except Exception as e:
-    traceback.print_exc()
-    print(e)
-    return render_template(
+    except Exception as e:
+      traceback.print_exc()
+      print(e)
+      return render_template(
         "index.html",
         error=f"An error occurred while analyzing your resume: {str(e)}"
     )
