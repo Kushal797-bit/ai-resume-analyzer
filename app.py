@@ -19,6 +19,7 @@ from skill_extractor import extract_skills, predict_job_role, calculate_ats_scor
 from flask import Flask, render_template, request, send_file, session, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
+import traceback
 from datetime import datetime
 
 app = Flask(__name__)
@@ -155,11 +156,23 @@ def upload_resume():
         print("Semantic JD Match Score:", jd_match_score)
         missing_jd_skills = list(set(jd_skills) - set(skills))
 
-        if predicted_role not in job_roles:
-         predicted_role = "Data Science"
+
+    role_mapping = {
+    "Data Science": "Data Scientist",
+    "Machine Learning": "AI/ML Engineer",
+    "Python Developer": "Backend Developer"
+}
+
+    predicted_role = role_mapping.get(predicted_role, predicted_role)
+
+
+    if predicted_role not in job_roles:
+       predicted_role = "Data Scientist"
+
+       
         
 
-        required_skills  = job_roles[predicted_role]
+        required_skills = job_roles[predicted_role]
         ats_score        = calculate_ats_score(skills, required_skills)
         missing_skills   = find_missing_skills(skills, required_skills)
         skill_tips = get_skill_tips(missing_skills)
@@ -192,8 +205,14 @@ def upload_resume():
             skill_tips=skill_tips,          
         )
 
-    except Exception as e:
-        return render_template("index.html", error=f"An error occurred while analyzing your resume: {str(e)}")
+    
+except Exception as e:
+    traceback.print_exc()
+    print(e)
+    return render_template(
+        "index.html",
+        error=f"An error occurred while analyzing your resume: {str(e)}"
+    )
 
 
 @app.route("/download-report")
@@ -223,7 +242,7 @@ def download_report():
     c.drawString(40, height - 58, f"Generated on {datetime.now().strftime('%d %B %Y, %I:%M %p')}")
     y = height - 90
 
-    # Best Role
+    
     y = draw_section_heading(c, y, width, "BEST MATCHING ROLE")
     c.setFillColor(colors.HexColor("#2980B9"))
     c.roundRect(50, y - 4, 200, 22, 6, fill=True, stroke=False)
@@ -248,7 +267,7 @@ def download_report():
     y -= 18
     y = draw_ats_bar(c, y, width, jd_match_score)
 
-    # Top Roles
+    
     y = draw_section_heading(c, y, width, "TOP CAREER RECOMMENDATIONS")
     for i, (role, score) in enumerate(top_roles, start=1):
         c.setFillColor(colors.HexColor("#2C3E50"))
@@ -270,7 +289,7 @@ def download_report():
         y -= 20
     y -= 8
 
-    # Missing Skills
+    
     y = draw_section_heading(c, y, width, "MISSING SKILLS  (add these to improve your score)")
     if missing_skills:
         y = draw_skill_badges(c, y, width, missing_skills, "#F8D7DA", "#E74C3C")
@@ -280,7 +299,7 @@ def download_report():
         c.drawString(50, y, "Great! No missing skills for this role.")
         y -= 20
 
-    # Footer
+    
     c.setFillColor(colors.HexColor("#BDC3C7"))
     c.rect(0, 0, width, 30, fill=True, stroke=False)
     c.setFillColor(colors.HexColor("#7F8C8D"))
